@@ -27,9 +27,9 @@ short *numlocation;
 int sudoku_count;
 bool stop_flag = true;
 ofstream fcout;
-int main(int argc,char *argv[])
+int main(int argc,char* argv[])
 {
-	if (sscanf(argv[2], "%d", &sudoku_count) == 0)
+	if (argc<3||sscanf_s(argv[2], "%d", &sudoku_count) == 0)//用于检测命令行输入的参数是否有错，
 	{
 		cout << "Input error,please re-input again" << endl;
 		return 0;
