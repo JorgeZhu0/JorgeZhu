@@ -27,13 +27,14 @@ short *numlocation;
 int sudoku_count;
 bool stop_flag = true;
 ofstream fcout;
-int main(int argc,char* argv[])
+int main(int argc, char*argv[])
 {
-	if (argc<3||sscanf_s(argv[2], "%d", &sudoku_count) == 0)//用于检测命令行输入的参数是否有错，
+	if (argc<3 || sscanf_s(argv[2], "%d", &sudoku_count) == 0)//用于检测命令行输入的参数是否有错，
 	{
 		cout << "Input error,please re-input again" << endl;
 		return 0;
 	}
+	srand(time(0));//播种子
 	int g = 0;
 	bool flag = true;
 	fcout.open(".\\sudoku.txt");
@@ -133,7 +134,7 @@ bool GetRandomValue(short g)//在第g个九宫格中随机选取可用的位置来放入数字
 {
 	if (blocks[g] == 0)return false;
 	int value;
-	value = clock() % blocks[g];//因为srand(time(0))中的时间种子精度不够，因此我采用毫秒级的clock()来生成随机数
+	value = rand() % blocks[g];//生成随机数
 	int i;
 	Node *p1, *p2;
 	for (i = 0, p2 = Grid[g], p1 = p2; i < 2 * blocks[g] - 1; i++)//p2即为可放置数字的位置坐标
